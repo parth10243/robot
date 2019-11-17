@@ -1,5 +1,22 @@
 DIRECTION = ["NORTH", "EAST", "SOUTH", "WEST"]
-
+MOVEMENT = {
+    'NORTH': {
+        'forward': 1,
+        'backward': -1
+    },
+    'EAST': {
+        'forward': 1,
+        'backward': -1
+    },
+    'SOUTH': {
+        'forward': -1,
+        'backward': 1
+    },
+    'WEST': {
+        'forward': -1,
+        'backward': 1
+    },
+}
 
 class RobotSimulator:
     """Simulate a robot with starting point (0,0) and faces North"""
@@ -26,7 +43,7 @@ class RobotSimulator:
         if command == "left":
             self.facing = self.facing - (number % 4)
 
-    def move (self, command, number):
+    def move(self, command, number):
         """Move the robot either forward or backward based on the command
 
         Keyword arguments:
@@ -34,32 +51,18 @@ class RobotSimulator:
         number -- the number of times move is to be performed
         """
 
-        if command == "forward":
-            if DIRECTION[self.facing] == "NORTH":
-                self.y += number
-            elif DIRECTION[self.facing] == "SOUTH":
-                self.y -= number
-            elif DIRECTION[self.facing] == "EAST":
-                self.x += number
-            elif DIRECTION[self.facing] == "WEST":
-                self.x -= number
-
-        if command == "backward":
-            if DIRECTION[self.facing] == "NORTH":
-                self.y -= number
-            elif DIRECTION[self.facing] == "SOUTH":
-                self.y += number
-            elif DIRECTION[self.facing] == "EAST":
-                self.x -= number
-            elif DIRECTION[self.facing] == "WEST":
-                self.x += number
+        direction_multiplier = MOVEMENT[DIRECTION[self.facing]][command]                              #+1 or -1 based on the current direction of robot and command given
+        if DIRECTION[self.facing] in ["NORTH","SOUTH"]:
+            self.y += (direction_multiplier * number)
+        elif DIRECTION[self.facing] in ["EAST","WEST"]:
+            self.x += (direction_multiplier * number)
 
     def get_position(self):
-        """Prints the position of robot along the directing in which it is facing"""
+        """Prints the position of robot along the direction in which it is facing"""
 
         print("Final position of the robot is ({},{}) facing {}.".format(self.x, self.y, DIRECTION[self.facing]))
 
     def get_shortest_distance(self):
-        """Prints the position of robot along the directing in which it is facing"""
+        """Prints the shortest distance back to the starting point"""
 
         print("Shortest distance to the starting point is {}".format(abs(self.x) + abs(self.y)))
