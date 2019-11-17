@@ -3,6 +3,7 @@ DIRECTION = ["NORTH", "EAST", "SOUTH", "WEST"]
 
 class RobotSimulator:
     """Simulate a robot with starting point (0,0) and faces North"""
+
     x = None
     y = None
     facing = None
@@ -19,6 +20,7 @@ class RobotSimulator:
         command -- the command given to robot either right or left
         number -- the number of times turn is to be performed
         """
+
         if command == "right":
             self.facing = self.facing + (number % 4)
         if command == "left":
@@ -31,6 +33,7 @@ class RobotSimulator:
         command -- the command given to robot either forward or backward
         number -- the number of times move is to be performed
         """
+
         if command == "forward":
             if DIRECTION[self.facing] == "NORTH":
                 self.y += number
@@ -53,8 +56,10 @@ class RobotSimulator:
 
     def get_position(self):
         """Prints the position of robot along the directing in which it is facing"""
+
         print("Final position of the robot is ({},{}) facing {}.".format(self.x, self.y, DIRECTION[self.facing]))
 
     def get_shortest_distance(self):
         """Prints the position of robot along the directing in which it is facing"""
+
         print("Shortest distance to the starting point is {}".format(abs(self.x) + abs(self.y)))
