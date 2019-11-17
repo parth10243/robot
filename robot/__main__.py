@@ -1,22 +1,25 @@
 from robot.robotSimulator import RobotSimulator
 
+VALID_COMMANDS = ["f", "b", "l", "r"]
+
+
 def main():
     """Simulates the robot interactively"""
-    commandString = input("Please enter the comma-separated commands")
+    command_string = input("Please enter the comma-separated commands")
     # print("You entered: ", commandString)
 
-    commandList = [command.strip() for command in commandString.lower().split(",")]
+    command_list = [command.strip() for command in command_string.lower().split(",")]
     # print(commandList)
 
     #Check if any command entered in invalid
-    for command in commandList:
-        if command[0] not in ["f", "b", "l", "r"] or not command[1:].isdigit():
+    for command in command_list:
+        if command[0] not in VALID_COMMANDS or not command[1:].isdigit():
             print("One of the commands entered in invalid. Please enter valid commands and try again.")
             exit(1)
 
     #Simulate robot
     robot = RobotSimulator()
-    for command in commandList:
+    for command in command_list:
         if command[0] == "f":
             robot.move("forward", int(command[1]))
         elif command[0] == "b":
@@ -26,7 +29,9 @@ def main():
         elif command[0] == "r":
             robot.turn("right", int(command[1]))
 
-    robot.getPosition()
+    robot.get_position()
+    robot.get_shortest_distance()
+
 
 if __name__ == '__main__':
     main()

@@ -1,6 +1,7 @@
 DIRECTION = ["NORTH", "EAST", "SOUTH", "WEST"]
 
-class RobotSimulator():
+
+class RobotSimulator:
     """Simulate a robot with starting point (0,0) and faces North"""
     x = None
     y = None
@@ -50,6 +51,10 @@ class RobotSimulator():
             elif DIRECTION[self.facing] == "WEST":
                 self.x += number
 
-    def getPosition(self):
+    def get_position(self):
         """Prints the position of robot along the directing in which it is facing"""
         print("Final position of the robot is ({},{}) facing {}.".format(self.x, self.y, DIRECTION[self.facing]))
+
+    def get_shortest_distance(self):
+        """Prints the position of robot along the directing in which it is facing"""
+        print("Shortest distance to the starting point is {}".format(abs(self.x) + abs(self.y)))
