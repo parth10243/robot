@@ -7,6 +7,14 @@ def main():
 
     commandList = [command.strip() for command in commandString.lower().split(",")]
     # print(commandList)
+
+    #Check if any command entered in invalid
+    for command in commandList:
+        if command[0] not in ["f", "b", "l", "r"] or not command[1:].isdigit():
+            print("One of the commands entered in invalid. Please enter valid commands and try again.")
+            exit(1)
+
+    #Simulate robot
     robot = RobotSimulator()
     for command in commandList:
         if command[0] == "f":
