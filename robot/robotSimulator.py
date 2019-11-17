@@ -18,6 +18,7 @@ MOVEMENT = {
     },
 }
 
+
 class RobotSimulator:
     """Simulate a robot with starting point (0,0) and faces North"""
 
@@ -39,9 +40,10 @@ class RobotSimulator:
         """
 
         if command == "right":
-            self.facing = self.facing + (number % 4)
+            self.facing = (self.facing + number) % 4
         if command == "left":
-            self.facing = self.facing - (number % 4)
+            self.facing = (self.facing - number) % 4
+        return DIRECTION[self.facing]
 
     def move(self, command, number):
         """Move the robot either forward or backward based on the command
@@ -57,12 +59,12 @@ class RobotSimulator:
         elif DIRECTION[self.facing] in ["EAST","WEST"]:
             self.x += (direction_multiplier * number)
 
-    def get_position(self):
-        """Prints the position of robot along the direction in which it is facing"""
+        return self.x, self.y, DIRECTION[self.facing]
 
-        print("Final position of the robot is ({},{}) facing {}.".format(self.x, self.y, DIRECTION[self.facing]))
+    def get_position(self):
+        """Returns the position of robot along the direction in which it is facing"""
+        return self.x, self.y, DIRECTION[self.facing]
 
     def get_shortest_distance(self):
-        """Prints the shortest distance back to the starting point"""
-
-        print("Shortest distance to the starting point is {}".format(abs(self.x) + abs(self.y)))
+        """Returns the shortest distance back to the starting point"""
+        return (abs(self.x) + abs(self.y))

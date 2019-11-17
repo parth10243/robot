@@ -40,8 +40,11 @@ def main():
         elif command[0] == "r":
             robot.turn("right", int(command[1]))
 
-    robot.get_position()
-    robot.get_shortest_distance()
+    x, y, direction = robot.get_position()
+    print("Final position of the robot is ({},{}) facing {}.".format(x, y, direction))
+
+    distance = robot.get_shortest_distance()
+    print("Shortest distance to the starting point is {}.".format(distance))
 
 
 if __name__ == '__main__':
