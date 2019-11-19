@@ -32,13 +32,13 @@ def main():
     robot = RobotSimulator()
     for command in command_list:
         if command[0] == "f":
-            robot.move("forward", int(command[1]))
+            robot.move("forward", int(command[1:]))
         elif command[0] == "b":
-            robot.move("backward", int(command[1]))
+            robot.move("backward", int(command[1:]))
         elif command[0] == "l":
-            robot.turn("left", int(command[1]))
+            robot.turn("left", int(command[1:]))
         elif command[0] == "r":
-            robot.turn("right", int(command[1]))
+            robot.turn("right", int(command[1:]))
 
     x, y, direction = robot.get_position()
     print("Final position of the robot is ({},{}) facing {}.".format(x, y, direction))
